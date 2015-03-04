@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html ng-app="appFromScratch">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="scripts/angular.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/weatherCtrl.js"></script>
+    <script src="scripts/services/weatherService.js"></script>
+    <script src="scripts/directives/errorDirective.js"></script>
+    <script src="scripts/directives/notFoundDirective.js"></script>
+</head>
+
+<body ng-controller="weatherCtrl">
+
+<form>
+    <input type="text" ng-model="cityID" placeholder="Lille,FR">
+    <input class="btn btn-default" type="submit" value="Chercher" ng-click="getWeatherByID(tweetName)" />
+</form>
+
+<alert when="errorCity">Erreur WS</alert>
+<alert-not-found when="cityNotFound">Ville non trouvée</alert-not-found>
+
+<div ng-show="foundCity">
+    <p>Votre recherche : {{ cityID }}</p>
+    <hr>
+    <h1>Position</h1>
+    <p>Latitude : {{ lat }}</p>
+    <p>Longitude : {{ lon }}</p>
+    <p>Pays : {{ country }}</p>
+    <hr>
+    <h1>Soleil</h1>
+    <p>Lever du soleil : {{ sunrise }}</p>
+    <p>Coucher du soleil: {{ sunset }}</p>
+    <hr>
+    <h1>Météo</h1>
+    <p>{{ main }}</p>
+    <p>{{ description }}</p>
+    <p>{{ temp | number:1 }} °C</p>
+</div>
+
+</body>
+</html>
